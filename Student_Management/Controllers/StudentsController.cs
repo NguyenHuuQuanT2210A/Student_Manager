@@ -148,7 +148,7 @@ namespace Student_Management.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, List<IFormFile> files)
+        public async Task<IActionResult> Edit(string id, List<IFormFile> files, string status)
         {
             if (id == null)
             {
@@ -194,11 +194,11 @@ namespace Student_Management.Controllers
                         }
                     }
                     studentToUpdate.Image = "/uploads/" + Path.GetFileName(filePaths[0]);
-                    if (studentToUpdate.Status.ToString() == "TookAttendance")
+                    if (status == "TookAttendance")
                     {
                         studentToUpdate.Status = true;
                     }
-                    else if (studentToUpdate.Status.ToString() == "NoAttendanceYet")
+                    else if (status == "NoAttendanceYet")
                     {
                         studentToUpdate.Status = false;
                     }
